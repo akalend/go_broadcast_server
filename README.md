@@ -1,6 +1,6 @@
 # CLIENT and broadcast SERVER
 
-This project is messenger prototype.
+This project is a messenger prototype.
 
 ## Installation
 Start the script `build.sh`
@@ -21,12 +21,12 @@ Send the message all clients:
 
 		>tis message send all clients
 
-Sending the message to a specific client, number 3 for example
+Sending the message to a specific client, number 3 (#3) for example
 
 	 ./client 
-	Connect from server: client #1
-	>#0 Message for client number 0
-	>[0 30 35 48 32 77 101 115 115 97 103 101 32 102 111 114 32 99 108 105 101 110 116 32 110 117 109 98 101 114 32 48]
+	Connect from server: client #0
+	>#3 Message for client number 3
+	>[0 30 35 48 32 77 101 115 115 97 103 101 32 102 111 114 32 99 108 105 101 110 116 32 110 117 109 98 101 114 32 51]
 	Send bytes: 32
 
 ## Binary protocol
