@@ -17,17 +17,39 @@ Start on the console the `server` and start some clients programm `client`. Afte
 
 ## Messaging
 
-Send the message all clients:
+Send the message *all clients*:
 
-		>tis message send all clients
+	./client
+	Connect from server: client #1
+	>this message send all clients
 
-Sending the message to a specific client, number 3 (#3) for example
+Receive message on the client #0:
+
+	./client
+	Connect from server: client #0
+	->#1:this message send all clients
+       |
+     from client # 1
+
+
+
+Sending the message to *a specific client*, number 3 (#3) for example
 
 	 ./client 
 	Connect from server: client #0
 	>#3 Message for client number 3
 	>[0 30 35 48 32 77 101 115 115 97 103 101 32 102 111 114 32 99 108 105 101 110 116 32 110 117 109 98 101 114 32 51]
 	Send bytes: 32
+
+
+Receive message, client #3:
+
+	./client
+	Connect from server: client #3
+	->0: Message for client number 3
+      |
+    from client # 0  
+
 
 ## Binary protocol
 
