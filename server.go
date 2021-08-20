@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"strings"
+	"time"
 
 	//"bufio"
 	"fmt"
@@ -97,6 +98,7 @@ func handle(n int, cnn map[int] net.Conn ) {
 				write_len, err := val.Write(b)
 				if err != nil {
 					fmt.Println(key, err)
+					delete(cnn, key)
 				} else {
 					fmt.Printf( "#%d: writed %d\n", key, write_len)
 				}
@@ -105,7 +107,7 @@ func handle(n int, cnn map[int] net.Conn ) {
 			//log.Printf("Listener: Wrote %d byte(s) to %s \n", num, conn.RemoteAddr().String())
 		}
 	}
-	fmt.Println("Close connection", n)
+	fmt.Println("Close connection", n, "free connection:", len(cnn))
 }
 
 func main() {
@@ -120,6 +122,10 @@ func main() {
 
 	i := 0
 	for {
+		if len(cnn) > 254 {
+			log.Println("Connection pool is full")
+			time.Sleep(time.Second )
+		}
 		conn, err := listener.Accept()
 		if err != nil {
 			// Print the error using a log.Fatal would exit the server
@@ -132,6 +138,9 @@ func main() {
 		go handle(i, cnn)
 		// Using a go routine to handle the connection
 		i++
+
+
+
 	}
 }
 
