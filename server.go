@@ -124,7 +124,12 @@ func main() {
 	for {
 		if len(cnn) > 254 {
 			log.Println("Connection pool is full")
+			conn, _ := listener.Accept()
+			_,b := EncodeProto("Pool is overflow")
+			conn.Write(b)
+			conn.Close()
 			time.Sleep(time.Second )
+			continue
 		}
 		conn, err := listener.Accept()
 		if err != nil {
